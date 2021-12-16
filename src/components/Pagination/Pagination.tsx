@@ -22,7 +22,11 @@ const Pagination: React.FC<Props> = ({ actualPage, changePage }) => {
     }
     return result;
   };
-  return <div className="Pagination">{getPages()}</div>;
+  return <div className="Pagination">
+    <button></button>
+    {getPages()}
+    <button></button>
+    </div>;
 };
 
 export default Pagination;
