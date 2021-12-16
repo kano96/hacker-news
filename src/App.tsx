@@ -41,7 +41,7 @@ const App: React.FC = () => {
   const [view, setView] = useState("All");
 
   //API
-  const URL = `https://hn.algolia.com/api/v1/search?query=${filter}&page=${
+  const URL = `https://cors-anywhere.herokuapp.com/https://hn.algolia.com/api/v1/search?query=${filter}&page=${
     page - 1
   }`;
 
