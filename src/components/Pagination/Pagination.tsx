@@ -1,5 +1,6 @@
 import React from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import "./Pagination.css";
 
 type Props = {
   actualPage: number;
@@ -13,7 +14,7 @@ const Pagination: React.FC<Props> = ({ actualPage, changePage }) => {
     for (let i = 1; i <= pagesNumber; i++) {
       result.push(
         <div
-          className={actualPage + 1 === i ? "activePage" : "inactivePage"}
+          className={actualPage === i ? "activePage" : "inactivePage"}
           key={`page${i}`}
           onClick={() => changePage(i)}
         >
@@ -26,11 +27,19 @@ const Pagination: React.FC<Props> = ({ actualPage, changePage }) => {
   return (
     <div className="Pagination">
       <div className="changePagebutton">
-        <FaAngleLeft onClick={() => changePage(actualPage - 1)} />
+        <FaAngleLeft
+          onClick={() => {
+            if (actualPage > 0) changePage(actualPage - 1);
+          }}
+        />
       </div>
       {getPages()}
       <div className="changePagebutton">
-        <FaAngleRight onClick={() => changePage(actualPage + 1)} />
+        <FaAngleRight
+          onClick={() => {
+            if (actualPage < pagesNumber) changePage(actualPage + 1);
+          }}
+        />
       </div>
     </div>
   );

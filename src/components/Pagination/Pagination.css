@@ -1,0 +1,31 @@
+.Pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 30px 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.changePagebutton,
+.activePage,
+.inactivePage {
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+.inactivePage {
+  border: solid 1px #d9d9d9;
+}
+
+.activePage {
+  background-color: #1890ff;
+  color: white;
+}
+
+@media screen and (min-width: 1000px) {
+  .Pagination {
+    gap: 20px;
+  }
+}
