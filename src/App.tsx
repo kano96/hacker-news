@@ -5,10 +5,9 @@ import Pagination from "./components/Pagination/Pagination";
 //Types
 
 export type NewType = {
-  story_id: number;
   author: string;
-  story_title: string;
-  story_url: string;
+  title: string;
+  url: string;
   created_at: string;
   objectID: string;
 };
@@ -49,8 +48,9 @@ const App: React.FC = () => {
 
   //Change page function
   const handleChangePage = (page: number) => {
-    setPage(page);
+    setIsLoaded(false);
     handleFetch();
+    setPage(page);
   };
   return (
     <div className="App">

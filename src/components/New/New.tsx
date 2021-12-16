@@ -23,7 +23,7 @@ const New: React.FC<Props> = ({ item, id }) => {
     }
   };
   const validate = () => {
-    if (item.author && item.created_at && item.story_title && item.story_url)
+    if (item.author && item.created_at && item.title && item.url)
       setAllParams(true);
     else {
       setAllParams(false);
@@ -38,14 +38,14 @@ const New: React.FC<Props> = ({ item, id }) => {
     <>
       {allParams ? (
         <div className="new">
-          <a href={item.story_url} className="newDetails">
+          <a href={item.url} className="newDetails">
             <div className="autor">
               <FaClock />
               <p>
                 {time} hour ago by: {item.author}
               </p>
             </div>
-            <div className="title">{item.story_title}</div>
+            <div className="title">{item.title}</div>
           </a>
           <div className="favouriteButton">
             <FaRegHeart />
