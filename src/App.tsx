@@ -117,7 +117,9 @@ const App: React.FC = () => {
       <Nav />
       <div className="maincontent">
         <Selector handleChangeView={handleChangeView} view={view} />
-        <DropDownMenu handleChangeFilter={handleChangeFilter} />
+        {view === "All" && (
+          <DropDownMenu handleChangeFilter={handleChangeFilter} />
+        )}
         {isLoaded && (
           <NewsGrid
             data={view === "All" ? news : favorites}
