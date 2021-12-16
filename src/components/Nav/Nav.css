@@ -1,0 +1,22 @@
+.navBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 1px 4px 0 rgba(0, 21, 41, 0.12);
+  background-image: linear-gradient(to bottom, #ececec -32%, #fff 124%);
+}
+
+.navBar img {
+  padding: 20px;
+  width: 250px;
+}
+
+@media screen and (min-width: 800px) {
+  .navBar {
+    justify-content: flex-start;
+  }
+  .navBar img {
+    padding: 44px 150px;
+    width: 250px;
+  }
+}

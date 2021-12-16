@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../assets/hacker-news@3x.png";
+import "./Nav.css";
 
 const Nav: React.FC = () => {
   return (
