@@ -63,7 +63,8 @@ const New: React.FC<Props> = ({ item, handleFavorites, favorites }) => {
             <div className="autor">
               <FaClock />
               <p>
-                {time} hour ago by: {item.author}
+                {time === 1 ? `${time} hour` : `${time} hours`} ago by:{" "}
+                {item.author}
               </p>
             </div>
             <div className="title">{item.title}</div>
