@@ -1,5 +1,6 @@
 import React from "react";
 import New from "../New/New";
+import "./NewsGrid.css";
 
 //Types
 import { NewType } from "../../App";
