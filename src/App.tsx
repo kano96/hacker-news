@@ -115,23 +115,25 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Nav />
-      <Selector handleChangeView={handleChangeView} view={view} />
-      <DropDownMenu handleChangeFilter={handleChangeFilter} />
-      {isLoaded && (
-        <NewsGrid
-          data={view === "All" ? news : favorites}
-          handleFavorites={handleFavorites}
-          favorites={favorites}
-        />
-      )}
-      {isLoaded && view === "All" ? (
-        <Pagination
-          actualPage={page}
-          changePage={handleChangePage}
-        ></Pagination>
-      ) : (
-        ""
-      )}
+      <div className="maincontent">
+        <Selector handleChangeView={handleChangeView} view={view} />
+        <DropDownMenu handleChangeFilter={handleChangeFilter} />
+        {isLoaded && (
+          <NewsGrid
+            data={view === "All" ? news : favorites}
+            handleFavorites={handleFavorites}
+            favorites={favorites}
+          />
+        )}
+        {isLoaded && view === "All" ? (
+          <Pagination
+            actualPage={page}
+            changePage={handleChangePage}
+          ></Pagination>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };

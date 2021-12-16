@@ -1,4 +1,5 @@
 import React from "react";
+import "./Selector.css";
 
 type Props = {
   view: string;
