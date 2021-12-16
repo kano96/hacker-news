@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import NewsGrid from "./components/NewsGrid/NewsGrid";
+import Pagination from "./components/Pagination/Pagination";
 
 //Types
 
@@ -8,30 +10,57 @@ export type NewType = {
   story_title: string;
   story_url: string;
   created_at: string;
+  objectID: string;
 };
 
-//Change page function
-
 const App: React.FC = () => {
+  //Find a filter on local storage
+  let initialFilter = localStorage.getItem("filter");
+  if (!initialFilter) {
+    initialFilter = "angular";
+  } else if (typeof initialFilter === "string") {
+    initialFilter = JSON.parse(initialFilter);
+  }
+
   const [news, setNews] = useState<NewType[]>([]);
+  const [favorites, setFavorites] = useState<NewType[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [page, setPage] = useState(0);
-  const [filter, setFilter] = useState("angular");
+  const [filter, setFilter] = useState(initialFilter);
+
+  const URL = `https://hn.algolia.com/api/v1/search?query=${filter}&page=${page}`;
+
+  //fetching data
+
+  const handleFetch = () => {
+    fetch(URL)
+      .then((response) => response.json())
+      .then((body) => {
+        console.log(body.hits);
+        setNews([...body.hits]);
+        setIsLoaded(true);
+      })
+      .catch((error) => console.error("Error", error));
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetch(
-        `https://hn.algolia.com/api/v1/search_by_date?query=${filter}&page=${page}`
-      ).then((res) => res.json());
-      setNews(data.hits);
-    };
-    fetchData();
-  }, [filter, page]);
+    handleFetch();
+  }, []);
 
+  //Change page function
+  const handleChangePage = (page: number) => {
+    setPage(page);
+    handleFetch();
+  };
   return (
     <div className="App">
-      {news?.map((item) => (
-        <div>{item.story_title}</div>
-      ))}
+      {isLoaded && <NewsGrid data={news} />}
+      {isLoaded && (
+        <Pagination
+          actualPage={page}
+          changePage={handleChangePage}
+        ></Pagination>
+      )}
     </div>
   );
 };
