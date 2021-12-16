@@ -41,9 +41,7 @@ const App: React.FC = () => {
   const [view, setView] = useState("All");
 
   //API
-  const URL = `https://cors-anywhere.herokuapp.com/https://hn.algolia.com/api/v1/search?query=${filter}&page=${
-    page - 1
-  }`;
+  const URL = `https://hn.algolia.com/api/v1/search?query=${filter}&page=${page}`;
 
   //fetching data
   const handleFetch = () => {
@@ -108,7 +106,7 @@ const App: React.FC = () => {
   //handle change filter ( angular, react or vue)
   const handleChangeFilter = (filter: "angular" | "react" | "vue") => {
     setFilter(filter);
-    setPage(0);
+    setPage(1);
   };
 
   //App component
