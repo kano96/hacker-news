@@ -22,28 +22,28 @@ const App: React.FC = () => {
   let initialFilter = localStorage.getItem("filter");
   if (!initialFilter) {
     initialFilter = "angular";
-  } else if (typeof initialFilter === "string") {
-    initialFilter = JSON.parse(initialFilter);
   }
 
   //find initial favorites on local storage
-  let initialFavorites: NewType[] = JSON.parse(
-    localStorage.getItem("favorites") || ""
-  );
+  let initialFavorites: any = localStorage.getItem("favorites") || "";
   if (!initialFavorites) {
     initialFavorites = [];
+  } else if (typeof initialFavorites === "string") {
+    initialFavorites = JSON.parse(initialFavorites);
   }
 
   //States
   const [news, setNews] = useState<NewType[]>([]);
   const [favorites, setFavorites] = useState<NewType[]>(initialFavorites);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [page, setPage] = useState(0);
-  const [filter, setFilter] = useState(initialFilter);
+  const [page, setPage] = useState(1);
+  const [filter, setFilter] = useState<string>(initialFilter);
   const [view, setView] = useState("All");
 
   //API
-  const URL = `https://hn.algolia.com/api/v1/search?query=${filter}&page=${page}`;
+  const URL = `https://hn.algolia.com/api/v1/search?query=${filter}&page=${
+    page - 1
+  }`;
 
   //fetching data
   const handleFetch = () => {
@@ -65,9 +65,9 @@ const App: React.FC = () => {
   useEffect(() => {
     //set filters in local storage
     if (initialFilter) {
-      localStorage.setItem("filter", JSON.stringify(filter));
+      localStorage.setItem("filter", filter);
     } else {
-      localStorage.setItem("filter", JSON.stringify(""));
+      localStorage.setItem("filter", filter);
     }
 
     //set favorites in local storage
