@@ -12,7 +12,7 @@
   line-height: 1.75;
   text-align: center;
   border-radius: 2px;
-  padding: 5px 40px;
+  padding: 5px 10px;
   cursor: pointer;
 }
 
@@ -23,4 +23,11 @@
 .unselectedButton {
   color: #606060;
   border: 1px solid #606060;
+}
+
+@media screen and (min-width: 400px) {
+  .selectedButton,
+  .unselectedButton {
+    padding: 5px 40px;
+  }
 }
