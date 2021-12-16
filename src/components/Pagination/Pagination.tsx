@@ -1,4 +1,5 @@
 import React from "react";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 type Props = {
   actualPage: number;
@@ -22,11 +23,17 @@ const Pagination: React.FC<Props> = ({ actualPage, changePage }) => {
     }
     return result;
   };
-  return <div className="Pagination">
-    <button></button>
-    {getPages()}
-    <button></button>
-    </div>;
+  return (
+    <div className="Pagination">
+      <div className="changePagebutton">
+        <FaAngleLeft onClick={() => changePage(actualPage - 1)} />
+      </div>
+      {getPages()}
+      <div className="changePagebutton">
+        <FaAngleRight onClick={() => changePage(actualPage + 1)} />
+      </div>
+    </div>
+  );
 };
 
 export default Pagination;

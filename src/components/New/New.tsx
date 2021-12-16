@@ -23,7 +23,7 @@ const New: React.FC<Props> = ({ item, handleFavorites, favorites }) => {
     try {
       const actualDate = Date.now();
       const publishDate = new Date(item.created_at).getTime();
-      const diference = (actualDate - publishDate) / 1000;
+      const diference = (actualDate - publishDate) / 10000000;
       setTime(Math.abs(Math.ceil(diference / (60 * 60))));
     } catch {
       setTime(0);
